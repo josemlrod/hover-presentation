@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>Create Your Own Ad - Project Walkthrough</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/white.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/highlight/monokai.css"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        corePlugins: { preflight: false },
+        important: true,
+        theme: {
+          extend: {
+            colors: {
+              surface: "#0f0f1a", // deep, modern background
+              surfaceElevated: "#181824",
+              text: "#d1d5e8", // soft, high-contrast text
+              primary: "#f3f4f6", // clean, light primary
+              accent: "#5a24fb", // your chosen vibrant purple-blue
+              success: "#2dd4bf", // fresh teal for success states
+              border: "#1c1c28", // subtle border for depth
+            },
+            fontFamily: {
+              sans: ["Inter", "Segoe UI", "Tahoma", "Verdana", "sans-serif"],
+              mono: ["Menlo", "Monaco", "Ubuntu Mono", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style type="text/tailwindcss">
+      @layer base {
+        .reveal h1 {
+          @apply text-7xl font-bold text-primary normal-case m-0;
+        }
+        .reveal h2 {
+          @apply text-5xl font-bold text-primary normal-case m-0;
+        }
+        .reveal h3 {
+          @apply text-4xl text-primary normal-case m-0;
+        }
+        .reveal h4 {
+          @apply text-2xl text-primary normal-case m-0;
+        }
+        .reveal p {
+          @apply text-xl text-text normal-case m-0;
+        }
+        .reveal li {
+          @apply text-xl text-text normal-case m-0;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-surface">
+    <div class="reveal">
+      <div class="slides">
+        <!-- Title Slide -->
+        <section>
+          <h1>Create Your Own <span class="text-accent">Ad</span></h1>
+          <h3 class="text-3xl text-text normal-case">Demo ad creation flow</h3>
+          <aside class="notes">
+            Welcome everyone, thank you for this opportunity. Today I'll be
+            walking you through a project I built called "Create Your Own Ad" -
+            an interactive demo flow that allowed Transmit's website visitors to
+            experience their video ad technology firsthand. This was a strategic
+            initiative to drive conversions from visitors to users by letting
+            them get hands-on with the product.
+          </aside>
+        </section>
+
+        <!-- Personal Introduction -->
+        <section>
+          <h2>Introduction</h2>
+          <aside class="notes">
+            Brief intro: I'm a full-stack developer with experience in building
+            interactive web applications that provide a delightful user
+            experience. I enjoy solving complex technical challenges while
+            keeping the user at the forefront. This project combined both my
+            technical skills and product thinking to create something that
+            directly impacted business metrics.
+          </aside>
+        </section>
+
+        <!-- Company Context -->
+        <section class="flex flex-col gap-8">
+          <h2>About <span class="text-accent">Transmit.live</span></h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="flex flex-col items-start gap-2 bg-surfaceElevated px-8 py-6 rounded-lg"
+            >
+              <h3>Core Business</h3>
+              <ul>
+                <li>
+                  <strong>Mission:</strong> Non-interruptive streaming ad
+                  revenue
+                </li>
+                <li>
+                  <strong>Market:</strong> Streaming platforms, live sports
+                </li>
+                <li>
+                  <strong>Value:</strong> Ads alongside content, not
+                  interrupting
+                </li>
+              </ul>
+            </div>
+            <div
+              class="flex flex-col items-start gap-2 bg-surfaceElevated px-8 py-6 rounded-lg"
+            >
+              <h3>Product Suite</h3>
+              <ul>
+                <li>
+                  <strong>Stream Composer:</strong> Personalized ad delivery
+                </li>
+                <li>
+                  <strong>Stream Extension:</strong> Audience monetization
+                </li>
+                <li><strong>Creative Studio:</strong> Custom ad units</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            Transmit.live is a streaming monetization technology company. They
+            specialize in non-interruptive ad formats - instead of cutting to
+            commercial breaks, their ads appear alongside or over content. Think
+            picture-in-picture ads during live sports, or overlay banners that
+            don't pause the stream.
+            <br />
+            Their technology is used by major streaming platforms.
+            <br />
+            The challenge was that most users were onboarded through sales reps,
+            and they needed a way for website visitors to understand and
+            experience the technology directly.
+          </aside>
+        </section>
+
+        <!-- Problem Statement -->
+        <section class="flex flex-col gap-8">
+          <h2>The <span class="text-accent">Challenge</span></h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="flex flex-col items-start gap-2 bg-surfaceElevated px-8 py-6 rounded-lg"
+            >
+              <h3>Business Context</h3>
+              <ul>
+                <li>Sales rep dependency for onboarding</li>
+                <li>Static content insufficient for value demo</li>
+                <li>Need to showcase technology interactively</li>
+              </ul>
+            </div>
+            <div
+              class="flex flex-col items-start gap-2 bg-surfaceElevated px-8 py-6 rounded-lg"
+            >
+              <h3>The Gap</h3>
+
+              <ul>
+                <li>
+                  How do you let visitors experience video ad technology without
+                  a sales demo?
+                </li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            The problem was clear: Transmit had built this solution for
+            non-interruptive video ads, but potential users couldn't really
+            understand the value just from static content on the website.
+            <br />
+            They were competing in a crowded market, but their differentiator
+            was flexibility - they could implement custom ad formats based on
+            client needs.
+            <br />
+            The challenge was communicating this through the website and letting
+            visitors actually experience what they were selling, rather than
+            just reading about it.
+          </aside>
+        </section>
+
+        <!-- Solution Overview -->
+        <section class="flex flex-col gap-8">
+          <div>
+            <h2>The <span class="text-accent">Solution</span></h2>
+            <h4 class="text-text">A new user flow within the "Demos" page</h4>
+          </div>
+          <div class="solution-overview">
+            <div class="grid grid-cols-2 gap-4">
+              <div
+                class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-6"
+              >
+                <h3>1</h3>
+                <h3>Content Upload</h3>
+                <p class="text-text">
+                  Users upload their video content or use defaults
+                </p>
+              </div>
+              <div
+                class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-6"
+              >
+                <h3>2</h3>
+                <h3>Ad Creation</h3>
+                <p class="text-text">
+                  Create ad unit with video/overlay/skin assets
+                </p>
+              </div>
+              <div
+                class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-6"
+              >
+                <h3>3</h3>
+                <h3>Insertion Point</h3>
+                <p class="text-text">Select timestamp for ad placement</p>
+              </div>
+              <div
+                class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-6"
+              >
+                <h3>4</h3>
+                <h3>Share & Encode</h3>
+                <p class="text-text">Email capture triggers video processing</p>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            The solution was an interactive four-step flow that let visitors
+            experience Transmit's technology firsthand.
+            <br />
+            Step 1: Upload content or use provided defaults.
+            <br />
+            Step 2: Create their ad unit by uploading whatever assets are
+            applicable to their chosen ad format or use provided defaults.
+            <br />
+            Step 3: Select exactly where in the content to insert the ad.
+            <br />
+            Step 4: Enter their email to trigger the encoding process which
+            ultimately sends the user the created encode via email.
+          </aside>
+        </section>
+
+        <!-- Key Objectives & Results -->
+        <!-- <section>
+          <h2>Objectives & Impact</h2>
+          <div class="objectives-results">
+            <div class="objectives">
+              <h3>Key Objectives</h3>
+              <ul>
+                <li>Self-service demo experience</li>
+                <li>Increase website engagement</li>
+                <li>Drive account creation</li>
+                <li>Showcase technology flexibility</li>
+              </ul>
+            </div>
+            <div class="results">
+              <h3>Business Impact</h3>
+              <div class="metric-highlight">
+                <span class="metric-number">300%</span>
+                <span class="metric-label"
+                  >increase in daily visits<br />
+                  (200 → 700/day)</span
+                >
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            The objectives were both technical and business-focused. We wanted
+            to create a smooth, engaging experience that would let users
+            understand Transmit's value proposition without needing a sales
+            call. The results spoke for themselves - we saw a 300% increase in
+            daily website visits, going from 200 to 700 visits per day. This was
+            a significant impact that showed the interactive approach was
+            working to drive interest and engagement.
+          </aside>
+        </section> -->
+
+        <!-- Technical Architecture Overview -->
+        <section>
+          <section class="flex flex-col gap-4">
+            <h2>
+              Technical Architecture: <span class="text-accent">Frontend</span>
+            </h2>
+            <div>
+              <img
+                class="max-w-3xl object-fit rounded-lg shadow-md m-0"
+                src="assets/nested-routes.webp"
+                alt="Nested Routes"
+              />
+            </div>
+            <aside class="notes">
+              The architecture was designed for both user experience and
+              scalability.
+              <br />
+              On the frontend, we used the nested routes approach because it
+              allowed us to do the following:
+              <br />
+              - Keep the flow simple and easy to understand
+              <br />
+              - Keep the validation of each step separated
+              <br />
+              - Keep the layout of the flow consistent
+              <br />
+              The parent layout route held the context for all the user choices
+              on each step. This enabled us to also grant/refuse access to next
+              steps, and prompt the user to confirm before navigating away since
+              their choices could be lost.
+              <br />
+              The child routes (steps) were responsible for rendering the
+              form/content, enforcing requirements from their previous/next step
+              to prevent user errors, and validating user input.
+            </aside>
+          </section>
+          <section class="flex flex-col gap-4">
+            <h2>
+              Technical Architecture: <span class="text-accent">Frontend</span>
+            </h2>
+            <div>
+              <div class="grid grid-cols-2 grid-rows-2 gap-4">
+                <div
+                  class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-8 relative flex items-center row-span-2"
+                >
+                  <ul>
+                    <li>
+                      Allow file(s) upload directly to file storage service ⌛
+                    </li>
+                    <li>
+                      Provide default videos for immediate testing and
+                      engagement ⚡
+                    </li>
+                  </ul>
+                  <p class="absolute top-2 left-4 text-primary">1 & 2</p>
+                </div>
+                <div
+                  class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-8 relative flex items-center"
+                >
+                  <ul>
+                    <li>Select timestamp for ad placement</li>
+                  </ul>
+                  <p class="absolute top-2 left-4 text-primary">3</p>
+                </div>
+                <div
+                  class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-8 relative flex items-center"
+                >
+                  <ul>
+                    <li>Capture user email</li>
+                    <li>Submit encode</li>
+                  </ul>
+                  <p class="absolute top-2 left-4 text-primary">4</p>
+                </div>
+              </div>
+            </div>
+            <aside class="notes">
+              The architecture was designed for both user experience and
+              scalability.
+              <br />
+              On the frontend, we used the nested routes approach because it
+              allowed us to do the following:
+              <br />
+              - Keep the flow simple and easy to understand
+              <br />
+              - Keep the validation of each step separated
+              <br />
+              - Keep the layout of the flow consistent
+              <br />
+              The parent layout route held the context for all the user choices
+              on each step. This enabled us to also grant/refuse access to next
+              steps, and prompt the user to confirm before navigating away since
+              their choices could be lost.
+              <br />
+              The child routes (steps) were responsible for rendering the
+              form/content, enforcing requirements from their previous/next step
+              to prevent user errors, and validating user input.
+            </aside>
+          </section>
+          <section class="flex flex-col gap-8">
+            <h2>
+              Technical Architecture: <span class="text-accent">Backend</span>
+            </h2>
+            <div>
+              <div class="backend-arch">
+                <img
+                  class="max-w-4xl object-fit rounded-lg shadow-md m-0"
+                  src="assets/backend-system.webp"
+                  alt="Backend System"
+                />
+              </div>
+            </div>
+            <aside class="notes">
+              The backend was designed to be scalable and reliable.
+              <br />
+              Speak to `createYourOwnAdHandler`:
+              <br />
+              - It's the main handler for the create your own ad flow.
+              <br />
+              - It's responsible for:
+              <br />
+              - Validating the request, and then sending a message to the
+              message queue.
+              <br />
+              - Creating a `jobProcessing` record in the database.
+              <br />
+              - Sending a response to the client, including a `jobId` to track
+              the encode.
+              <br />
+              Speak to `processCreateYourOwnAd`:
+              <br />
+              - It's the worker that processes the messages from the queue.
+              <br />
+              - It's responsible for:
+              <br />
+              - Downloading the assets from the file storage service.
+              <br />
+              - Creating the encode using ffmpeg.
+              <br />
+              - Uploading the result to the file storage service.
+              <br />
+              - Sending an email to the user with the URL to the result.
+              <br />
+              - Updating the `jobProcessing` record in the database.
+              <br />
+              We're storing the `jobProcessing` record in a Non-relational DB to
+              track the encoding progress.
+              <br />
+              Something we didn't metion before, but should now is that the last
+              step in the flow, after submitting the encode it starts polling to
+              get the status of the job until the job is completed. That allows
+              us to provide the user with some feedback on the status of the
+              job.
+            </aside>
+          </section>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="flex flex-col gap-8">
+          <h2><span class="text-accent">Technology</span> Choices</h2>
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-6 flex flex-col items-start"
+            >
+              <h3>Frontend</h3>
+              <ul>
+                <li><strong>React:</strong> Component UI + hooks</li>
+                <li><strong>React Router:</strong> Multi-step navigation</li>
+                <li><strong>Material UI:</strong> Consistent components</li>
+                <li><strong>AWS S3:</strong> Direct file uploads</li>
+                <li><strong>FullStory:</strong> User analytics</li>
+              </ul>
+            </div>
+            <div
+              class="border border-border rounded-lg bg-surfaceElevated shadow-sm px-8 py-6 flex flex-col items-start"
+            >
+              <h3>Backend</h3>
+              <ul>
+                <li>
+                  <strong>Node.js + Fastify:</strong> High-performance API
+                </li>
+                <li><strong>MongoDB:</strong> Flexible document storage</li>
+                <li><strong>FFmpeg:</strong> Video processing</li>
+                <li><strong>AWS SQS:</strong> Message queuing</li>
+                <li><strong>AWS SES:</strong> Email delivery</li>
+                <li><strong>AWS Lambda:</strong> Serverless workers</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            Technology choices were driven by performance and user experience
+            requirements. React Router enabled the multi-step flow with proper
+            state management. Material UI provided consistent, accessible
+            components that matched the company's design system.
+          </aside>
+        </section>
+
+        <!-- Technical Challenge 1 -->
+        <section>
+          <h2>
+            Challenge #1:
+            <span class="text-accent">File Upload Performance</span>
+          </h2>
+          <section>
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 px-8 py-6 bg-surfaceElevated rounded-lg shadow-md place-items-center"
+            >
+              <h3>Problem</h3>
+              <div>
+                <ul>
+                  <li>
+                    Users uploading large video files could experience long wait
+                    times, and potentially drop-off from the flow due to network
+                    latency.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <aside class="notes">
+              The first major challenge was keeping users engaged during file
+              uploads. Large video files could take minutes to upload, and we
+              were worried about drop-offs. Our solution was multi-pronged: we
+              set reasonable file size limits, provided high-quality default
+              videos so users could experience the flow immediately, and
+              implemented direct S3 uploads to avoid bottlenecking through our
+              servers. We also added clear progress indicators. The key insight
+              was that users who just wanted to test the technology could use
+              defaults, while serious prospects would be willing to wait for
+              their own content.
+            </aside>
+          </section>
+          <section>
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 px-8 py-6 bg-surfaceElevated rounded-lg shadow-md place-items-center"
+            >
+              <h3>Solution</h3>
+              <div class="text-start">
+                <ul>
+                  <li>
+                    Implemented file size limits for reasonable upload times
+                  </li>
+                  <li>
+                    Provided "Use default video" options for immediate testing
+                  </li>
+                  <li>Direct S3 uploads bypassing our servers</li>
+                  <li>Progress indicators and upload status feedback</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 px-8 py-6 bg-surfaceElevated rounded-lg shadow-md place-items-center"
+            >
+              <h3>Outcome</h3>
+              <div>
+                <ul>
+                  <li>
+                    <strong>Result:</strong> Users who started the flow
+                    completed it - no significant drop-offs during upload steps.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- Technical Challenge 2 -->
+        <section>
+          <h2>
+            Challenge #2:
+            <span class="text-accent">Scalable Video Processing</span>
+          </h2>
+          <section>
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 px-8 py-6 bg-surfaceElevated rounded-lg shadow-md place-items-center"
+            >
+              <h3>Problem</h3>
+              <div>
+                <ul>
+                  <li>
+                    Video encoding takes significant time/resources. Risk of
+                    losing submissions during high traffic.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <aside class="notes">
+              The second challenge was handling the video processing reliably at
+              scale. Video encoding with FFmpeg is CPU-intensive and
+              time-consuming - downloading files, processing video, uploading
+              results, and sending emails could take several minutes per job. We
+              couldn't do this synchronously without terrible user experience.
+              The solution was a robust async architecture: when users
+              submitted, we immediately queued the job and gave them
+              confirmation. Lambda workers would pick up jobs as capacity
+              allowed, process them completely, and send results via email. We
+              monitored the ratio of submissions to completions to ensure 100%
+              reliability.
+            </aside>
+          </section>
+          <section>
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 px-8 py-6 bg-surfaceElevated rounded-lg shadow-md place-items-center"
+            >
+              <h3>Solution</h3>
+              <div>
+                <ul>
+                  <li>Async message queue (AWS SQS)</li>
+                  <li>Lambda workers for auto-scaling</li>
+                  <li>Pipeline: download → process → upload → email</li>
+                  <li>Monitor submission/completion parity</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 px-8 py-6 bg-surfaceElevated rounded-lg shadow-md place-items-center"
+            >
+              <h3>Outcome</h3>
+              <div>
+                <ul>
+                  <li>
+                    <strong>Result:</strong> 100% reliability - every submission
+                    completed successfully.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- Demo Video Section -->
+        <section>
+          <h2>Demo Video</h2>
+          <div class="demo-section">
+            <div class="demo-placeholder">
+              <h3>User Experience Walkthrough</h3>
+              <p>[Demo video will be embedded here showing:]</p>
+              <ul>
+                <li>Complete 4-step user flow</li>
+                <li>File upload and validation</li>
+                <li>Ad format selection and customization</li>
+                <li>Timestamp selection interface</li>
+                <li>Email submission and confirmation</li>
+                <li>Final encoded result showcase</li>
+              </ul>
+              <p class="demo-note">
+                <em>Video demonstrates smooth UX and technical capabilities</em>
+              </p>
+            </div>
+          </div>
+          <aside class="notes">
+            This is where I'll show the recorded demo video that walks through
+            the entire user experience. You'll see how intuitive the four-step
+            process is, how users can either upload their own content or use
+            defaults, the variety of ad formats available, the timestamp
+            selection interface, and finally the email confirmation. The video
+            will also show an example of the final encoded result that users
+            receive, demonstrating the quality and effectiveness of the video ad
+            insertion technology.
+          </aside>
+        </section>
+
+        <!-- Security & Performance -->
+        <section>
+          <h2>
+            Security &
+            <span class="text-accent">Performance</span>
+          </h2>
+          <section class="flex flex-col gap-8">
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 items-start bg-surfaceElevated px-8 py-6 rounded-lg"
+            >
+              <h4 class="self-center">Security Measures</h4>
+              <ul>
+                <li>
+                  <strong>Rate Limiting:</strong> 10 requests/minute per IP
+                </li>
+                <li>
+                  <strong>File Validation:</strong> Type and size restrictions
+                </li>
+                <li>
+                  <strong>Input Sanitization:</strong> All user inputs validated
+                </li>
+              </ul>
+            </div>
+            <aside class="notes">
+              Security and performance were critical considerations. We
+              implemented rate limiting to prevent abuse of the encoding
+              endpoint - 10 requests per minute per IP address was sufficient
+              for legitimate use while preventing spam. File validation ensured
+              only appropriate video formats and sizes were processed. All user
+              inputs were properly sanitized.
+            </aside>
+          </section>
+          <section class="flex flex-col gap-8">
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 items-start bg-surfaceElevated px-8 py-6 rounded-lg"
+            >
+              <h4 class="self-center">Performance Monitoring</h4>
+              <ul>
+                <li>
+                  <strong>Success Rate:</strong> Frontend submissions vs.
+                  completed encodes
+                </li>
+                <li>
+                  <strong>Processing Time:</strong> Average encode completion
+                  time
+                </li>
+                <li>
+                  <strong>User Analytics:</strong> FullStory for behavior
+                  insights
+                </li>
+                <li>
+                  <strong>Error Tracking:</strong> Failed uploads and processing
+                  jobs
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section>
+          <h2>
+            Lessons Learned &
+            <span class="text-accent">Future Improvements</span>
+          </h2>
+          <section>
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 items-start bg-surfaceElevated px-8 py-6 rounded-lg"
+            >
+              <h4 class="self-center">Key Learnings</h4>
+              <ul>
+                <li>
+                  <strong>User Experience First:</strong> Default options
+                  reduced friction significantly
+                </li>
+                <li>
+                  <strong>Async Architecture:</strong> Essential for video
+                  processing workloads
+                </li>
+              </ul>
+            </div>
+            <aside class="notes">
+              Several key lessons emerged from this project. First, providing
+              default options was crucial - many users just wanted to test the
+              functionality quickly rather than upload their own content.
+            </aside>
+          </section>
+          <section>
+            <div
+              class="grid grid-cols-[auto_1fr] gap-8 items-start bg-surfaceElevated px-8 py-6 rounded-lg"
+            >
+              <h4 class="self-center">Future Enhancements</h4>
+              <ul>
+                <li>Real-time progress updates via WebSockets</li>
+                <li>Add more ad formats</li>
+              </ul>
+            </div>
+            <aside class="notes">
+              Looking forward, I'd love to add real-time progress updates so
+              users could see their video being processed, and add more ad
+              formats.
+            </aside>
+          </section>
+        </section>
+
+        <!-- Technical Deep Dive - Code Examples -->
+        <!-- <section>
+          <h2>Code Architecture Example</h2>
+          <div class="code-example">
+            <h3>Flow Context Implementation</h3>
+            <pre><code class="javascript rounded-lg" data-trim>
+// Flow context for managing state across steps
+const CreateAdContext = createContext();
+
+export const CreateAdProvider = ({ children }) => {
+  const [flowData, setFlowData] = useState({
+    content: null,
+    adUnit: null,
+    insertionPoint: null,
+    email: null
+  });
+  
+  const [currentStep, setCurrentStep] = useState(1);
+  const [canProceed, setCanProceed] = useState(false);
+  
+  // Validation logic for step progression
+  const validateStep = (step) => {
+    switch(step) {
+      case 1: return flowData.content !== null;
+      case 2: return flowData.adUnit !== null;
+      case 3: return flowData.insertionPoint !== null;
+      case 4: return flowData.email !== null;
+      default: return false;
+    }
+  };
+						</code></pre>
+          </div>
+          <aside class="notes">
+            This shows the React Context implementation that managed state
+            across all four steps. The key insight was centralizing all flow
+            data and validation logic. Each step could access the shared state,
+            and we could prevent users from jumping ahead without completing
+            previous steps. The validateStep function ensured data integrity
+            throughout the flow and provided clear feedback about what was
+            needed to proceed.
+          </aside>
+        </section> -->
+
+        <!-- Questions & Discussion -->
+        <section>
+          <h2>Thank you for your <span class="text-accent">time</span>✨</h2>
+          <h4>Happy to answer any questions!</h4>
+          <aside class="notes">
+            Thank you for your attention. I'm excited to discuss any aspects of
+            this project in more detail. Whether you want to dive into specific
+            technical implementation details, discuss the architecture decisions
+            and trade-offs I made, talk about how this system could scale
+            further, or explore integration possibilities with existing systems
+            - I'm ready to answer your questions. I really enjoyed building this
+            project because it combined technical challenges with direct
+            business impact, and I'd love to bring that same approach to your
+            team.
+          </aside>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        center: true,
+        transition: "slide",
+        transitionSpeed: "default",
+        backgroundTransition: "fade",
+        margin: 0.03,
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+        // Display presentation control arrows
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display slide numbers
+        slideNumber: true,
+        // Show speaker notes
+        showNotes: false,
+      });
+    </script>
+  </body>
+</html>
