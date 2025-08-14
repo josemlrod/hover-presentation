@@ -257,41 +257,6 @@
           </aside>
         </section>
 
-        <!-- Key Objectives & Results -->
-        <!-- <section>
-          <h2>Objectives & Impact</h2>
-          <div class="objectives-results">
-            <div class="objectives">
-              <h3>Key Objectives</h3>
-              <ul>
-                <li>Self-service demo experience</li>
-                <li>Increase website engagement</li>
-                <li>Drive account creation</li>
-                <li>Showcase technology flexibility</li>
-              </ul>
-            </div>
-            <div class="results">
-              <h3>Business Impact</h3>
-              <div class="metric-highlight">
-                <span class="metric-number">300%</span>
-                <span class="metric-label"
-                  >increase in daily visits<br />
-                  (200 → 700/day)</span
-                >
-              </div>
-            </div>
-          </div>
-          <aside class="notes">
-            The objectives were both technical and business-focused. We wanted
-            to create a smooth, engaging experience that would let users
-            understand Transmit's value proposition without needing a sales
-            call. The results spoke for themselves - we saw a 300% increase in
-            daily website visits, going from 200 to 700 visits per day. This was
-            a significant impact that showed the interactive approach was
-            working to drive interest and engagement.
-          </aside>
-        </section> -->
-
         <!-- Technical Architecture Overview -->
         <section>
           <section class="flex flex-col gap-4">
@@ -625,24 +590,15 @@
         </section>
 
         <!-- Demo Video Section -->
-        <section>
+        <section class="flex flex-col gap-4">
           <h2>Demo Video</h2>
           <div class="demo-section">
-            <div class="demo-placeholder">
-              <h3>User Experience Walkthrough</h3>
-              <p>[Demo video will be embedded here showing:]</p>
-              <ul>
-                <li>Complete 4-step user flow</li>
-                <li>File upload and validation</li>
-                <li>Ad format selection and customization</li>
-                <li>Timestamp selection interface</li>
-                <li>Email submission and confirmation</li>
-                <li>Final encoded result showcase</li>
-              </ul>
-              <p class="demo-note">
-                <em>Video demonstrates smooth UX and technical capabilities</em>
-              </p>
-            </div>
+            <video
+              class="max-w-4xl object-fit rounded-lg shadow-md m-0"
+              src="assets/demo-vid.webm"
+              controls
+              muted
+            ></video>
           </div>
           <aside class="notes">
             This is where I'll show the recorded demo video that walks through
@@ -760,49 +716,6 @@
             </aside>
           </section>
         </section>
-
-        <!-- Technical Deep Dive - Code Examples -->
-        <!-- <section>
-          <h2>Code Architecture Example</h2>
-          <div class="code-example">
-            <h3>Flow Context Implementation</h3>
-            <pre><code class="javascript rounded-lg" data-trim>
-// Flow context for managing state across steps
-const CreateAdContext = createContext();
-
-export const CreateAdProvider = ({ children }) => {
-  const [flowData, setFlowData] = useState({
-    content: null,
-    adUnit: null,
-    insertionPoint: null,
-    email: null
-  });
-  
-  const [currentStep, setCurrentStep] = useState(1);
-  const [canProceed, setCanProceed] = useState(false);
-  
-  // Validation logic for step progression
-  const validateStep = (step) => {
-    switch(step) {
-      case 1: return flowData.content !== null;
-      case 2: return flowData.adUnit !== null;
-      case 3: return flowData.insertionPoint !== null;
-      case 4: return flowData.email !== null;
-      default: return false;
-    }
-  };
-						</code></pre>
-          </div>
-          <aside class="notes">
-            This shows the React Context implementation that managed state
-            across all four steps. The key insight was centralizing all flow
-            data and validation logic. Each step could access the shared state,
-            and we could prevent users from jumping ahead without completing
-            previous steps. The validateStep function ensured data integrity
-            throughout the flow and provided clear feedback about what was
-            needed to proceed.
-          </aside>
-        </section> -->
 
         <!-- Questions & Discussion -->
         <section>
